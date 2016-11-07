@@ -4,4 +4,8 @@ class EpisodesController < ApplicationController
 
     render json: @episodes
   end
+
+  def show
+    render json: Episode.find(params[:id])
+  end
 end
