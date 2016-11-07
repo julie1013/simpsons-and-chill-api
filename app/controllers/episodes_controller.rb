@@ -12,7 +12,6 @@ class EpisodesController < ApplicationController
 
   def update
     if @episode.update(episode_params)
-      head :no_content
     else
       render json: @episode.errors, status: :unprocessable_entity
     end
