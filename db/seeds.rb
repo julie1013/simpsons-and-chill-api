@@ -25,8 +25,7 @@ episodes = Episode.create([
                             { title: 'I Love Lisa' },
                             { title: 'Duffless' },
                             { title: 'Last Exit to Springfield' },
-                            { title: 'So It\'s Come to This: A Simpsons Clip
-                                      Show' },
+                            { title: 'So It\'s Come to This: A Simpsons Clip Show' },
                             { title: 'The Front' },
                             { title: 'Whacking Day' },
                             { title: 'Marge in Chains' },
