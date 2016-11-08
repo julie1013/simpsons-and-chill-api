@@ -6,6 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+users = User.create([
+  {
+    email: "dog@dog.com",
+    password: "dog",
+    password_confirmation: "dog"
+  },
+  {
+    email: "cat@cat.com",
+    password: "cat",
+    password_confirmation: "cat"
+  }
+  ])
+
 episodes = Episode.create([
                             { title: 'Kamp Krusty' },
                             { title: 'A Streetcar Named Marge' },
@@ -30,3 +43,30 @@ episodes = Episode.create([
                             { title: 'Marge in Chains' },
                             { title: 'Krusty Gets Kancelled' }
                           ])
+
+playlists = Playlist.create([
+    {
+      user_id: 1,
+      episode_id: 3
+    },
+    {
+      user_id: 1,
+      episode_id: 4
+    },
+    {
+      user_id: 1,
+      episode_id: 5
+    },
+    {
+      user_id: 2,
+      episode_id: 22
+    },
+    {
+      user_id: 2,
+      episode_id: 11
+    },
+    {
+      user_id: 2,
+      episode_id: 6
+    }
+  ])

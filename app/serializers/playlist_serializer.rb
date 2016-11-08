@@ -1,4 +1,13 @@
 class PlaylistSerializer < ActiveModel::Serializer
-  attributes :id, :first_episode, :second_episode, :third_episode,
-             :fourth_episode, :fifth_episode, :sixth_episode
+  attributes :id, :user, :episode
+  has_one :episode
+  has_one :user
+
+  def user
+    object.user.id
+  end
+
+  def episode
+    object.episode.id
+  end
 end

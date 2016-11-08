@@ -1,4 +1,4 @@
 class Episode < ActiveRecord::Base
-  has_many :playlists, through: :queuings
-  has_many :queuings
+  has_many :playlists
+  has_many :users, through: :playlists
 end

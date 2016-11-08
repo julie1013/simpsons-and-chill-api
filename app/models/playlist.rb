@@ -1,5 +1,4 @@
 class Playlist < ActiveRecord::Base
-  belongs_to :user
-  has_many :episodes, through: :queuings
-  has_many :queuings
+  belongs_to :episode, inverse_of: :playlists
+  belongs_to :user, inverse_of: :playlists
 end
