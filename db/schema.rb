@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107200340) do
+ActiveRecord::Schema.define(version: 20161108042846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 20161107200340) do
   end
 
   add_index "examples", ["user_id"], name: "index_examples_on_user_id", using: :btree
+
+  create_table "playlists", force: :cascade do |t|
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "second_episode"
+    t.string   "third_episode"
+    t.string   "first_episode"
+    t.string   "fourth_episode"
+    t.string   "fifth_episode"
+    t.string   "sixth_episode"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/episodes', to: 'episodes#index'
   get '/episodes/:id', to: 'episodes#show'
   patch '/episodes/:id', to: 'episodes#update'
+  get '/playlists', to: 'playlists#index'
   resources :users, only: [:index, :show]
   resources :episodes, only: [:index, :show, :update]
 end
