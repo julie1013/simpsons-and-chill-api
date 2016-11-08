@@ -6,7 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
 episodes = Episode.create([
                             { title: 'Kamp Krusty' },
                             { title: 'A Streetcar Named Marge' },
