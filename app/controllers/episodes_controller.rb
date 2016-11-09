@@ -1,5 +1,5 @@
 class EpisodesController < ApplicationController
-  before_action :set_episode, only: [:show, :create, :update, :destroy]
+  before_action :set_episode, only: [:show, :update, :destroy]
 
   def index
     @episodes = Episode.all

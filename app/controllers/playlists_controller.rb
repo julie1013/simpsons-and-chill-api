@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :create, :update, :destroy]
+  before_action :set_playlist, only: [:show, :update, :destroy]
 
   # GET /playlists
   # GET /playlists.json
@@ -54,6 +54,6 @@ class PlaylistsController < ApplicationController
   end
 
   def playlist_params
-    params.require(:playlist).permit(:episode_id, :user_id)
+    params.require(:playlist).permit(:user_id, :episode_id, :rating)
   end
 end
