@@ -1,9 +1,20 @@
 class EpisodesController < ApplicationController
-  before_action :set_episode, only: [:show, :update]
+  before_action :set_episode, only: [:show, :create, :update, :destroy]
+
   def index
     @episodes = Episode.all
 
     render json: @episodes
+  end
+
+  def create
+    @episode = Episode.new(episode_params)
+
+    if @episode.save
+      render json: @episode, status: :created, location: @episode
+    else
+      render json: @episode.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -15,6 +26,12 @@ class EpisodesController < ApplicationController
     else
       render json: @episode.errors, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @episode.destroy
+
+    head :no_content
   end
 
   private
