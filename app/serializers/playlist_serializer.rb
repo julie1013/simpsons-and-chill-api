@@ -1,5 +1,5 @@
 class PlaylistSerializer < ActiveModel::Serializer
-  attributes :id, :user, :episode
+  attributes :id, :user, :episode, :rating
   # has_one :episode
   # has_one :user
 
