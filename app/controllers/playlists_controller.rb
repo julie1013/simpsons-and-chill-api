@@ -26,11 +26,28 @@ class PlaylistsController < ApplicationController
       render json: @playlist.errors, status: :unprocessable_entity
     end
   end
+  #
+  # def create
+  #   episode = playlist_params[:episode].to_i
+  #   if !current_user.episode.include? episode
+  #     @playlist = Playlist.new playlist_params
+  #     @playlist.user = current_user
+  #
+  #     if @playlist.save
+  #       render json: @playlist.to_json(include: :episode),
+  #              status: :created,
+  #              location: @playlist
+  #     else
+  #       render json: @playlist.errors, status: :unprocessable_entity
+  #     end
+  #   else
+  #     head :unprocessable_entity
+  #   end
+  # end
 
   # PATCH/PUT /playlists/1
   # PATCH/PUT /playlists/1.json
   def update
-    @playlist = Playlist.find(params[:id])
 
     if @playlist.update(playlist_params)
       head :no_content
@@ -50,7 +67,7 @@ class PlaylistsController < ApplicationController
   private
 
   def set_playlist
-    @playlist = Playlist.find(params[:id])
+    @playlist = current_user.playlists.find(params[:id])
   end
 
   def playlist_params
