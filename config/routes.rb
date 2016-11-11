@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   # resources :
   resources :users, only: [:index, :show]
   resources :episodes, only: [:index, :show]
-  resources :playlists, only: [:index, :create, :show, :update, :destroy]
+  resources :playlists, except: [:new, :edit]
 end
