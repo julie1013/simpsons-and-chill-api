@@ -8,7 +8,7 @@ class PlaylistsController < ApplicationController
 
     render json: @playlists.to_json(include: :episode)
   end
-
+  # # trying to figure out how to get current_user to work
   # GET /playlists/1
   # GET /playlists/1.json
   # def show
