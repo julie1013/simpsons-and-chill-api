@@ -1,12 +1,12 @@
-class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :update, :destroy]
+class PlaylistsController < ProtectedController
+  before_action :set_playlist, only: [:update, :destroy]
 
   # GET /playlists
   # GET /playlists.json
   def index
     @playlists = current_user.playlists
 
-    render json: @playlists.to_json(include: :episode)
+    render json: @playlists
   end
   # # trying to figure out how to get current_user to work
   # GET /playlists/1
@@ -14,47 +14,46 @@ class PlaylistsController < ApplicationController
   # def show
   #   render json: @playlist
   # end
-
+  #
   # POST /playlists
   # POST /playlists.json
-  # def create
-  #   @playlist = Playlist.new(playlist_params)
-  #
-  #   if @playlist.save
-  #     render json: @playlist, status: :created, location: @playlist
-  #   else
-  #     render json: @playlist.errors, status: :unprocessable_entity
-  #   end
-  # end
-  # #
   def create
-    episode = playlist_params[:episode].to_i
-    if !current_user.episode.include? episode
-      @playlist = Playlist.new playlist_params
-      @playlist.user = current_user
+    @playlist = current_user.playlists.build(playlist_params)
 
-      if @playlist.save
-        render json: @playlist.to_json(include: :episode),
-               status: :created,
-               location: @playlist
-      else
-        render json: @playlist.errors, status: :unprocessable_entity
-      end
+    if @playlist.save
+      render json: @playlist, status: :created, location: @playlist
     else
-      head :unprocessable_entity
+      render json: @playlist.errors, status: :unprocessable_entity
     end
   end
+  # #
+  # def create
+  #   episode = playlist_params[:episode].to_i
+  #   if !current_user.episode.include? episode
+  #     @playlist = Playlist.new playlist_params
+  #     @playlist.user = current_user
+  #
+  #     if @playlist.save
+  #       render json: @playlist.to_json(include: :episode),
+  #              status: :created,
+  #              location: @playlist
+  #     else
+  #       render json: @playlist.errors, status: :unprocessable_entity
+  #     end
+  #   else
+  #     head :unprocessable_entity
+  #   end
+  # end
 
   # PATCH/PUT /playlists/1
   # PATCH/PUT /playlists/1.json
-  # def update
-  #
-  #   if @playlist.update(playlist_params)
-  #     head :no_content
-  #   else
-  #     render json: @playlist.errors, status: :unprocessable_entity
-  #   end
-  # end
+  def update
+    if @playlist.update(playlist_params)
+      head :no_content
+    else
+      render json: @playlist.errors, status: :unprocessable_entity
+    end
+  end
 
   # DELETE /playlists/1
   # DELETE /playlists/1.json
@@ -67,7 +66,7 @@ class PlaylistsController < ApplicationController
   private
 
   def set_playlist
-    @playlist = Playlist.find(params[:id])
+    @playlist = current_user.playlists.find(params[:id])
   end
 
   def playlist_params

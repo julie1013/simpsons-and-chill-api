@@ -1,4 +1,4 @@
-<% project_name = 'rails-api-template' %>
+<% project_name = 'simpsons-and-chill-api' %>
 
 default: &default
   adapter: postgresql

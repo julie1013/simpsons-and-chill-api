@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20161109183235) do
   enable_extension "plpgsql"
 
   create_table "episodes", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20161109183235) do
   end
 
   add_index "playlists", ["episode_id"], name: "index_playlists_on_episode_id", using: :btree
+  add_index "playlists", ["user_id", "episode_id"], name: "index_playlists_on_user_id_and_episode_id", using: :btree
   add_index "playlists", ["user_id"], name: "index_playlists_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|

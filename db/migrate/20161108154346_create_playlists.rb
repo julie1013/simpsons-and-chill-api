@@ -6,5 +6,8 @@ class CreatePlaylists < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    # prevent duplicate rows in join
+    add_index :playlists, [:user_id, :episode_id]
   end
 end
